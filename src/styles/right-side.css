@@ -69,4 +69,12 @@
         width: auto;
         padding: 50px 0;
     }
+    .info-section h1 {
+        font-size: 45px;
+        line-height: 3.5rem;
+    }
+
+    .info-box {
+        font-size: 0.85rem;
+    }
 }
