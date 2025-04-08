@@ -22,7 +22,7 @@ main {
     position: absolute;
     top: -5%;
     left: -5%;
-    width: 108%;
+    width: 106.5%;
     height: 108%;
     object-fit: cover;
     filter: blur(6px);

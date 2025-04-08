@@ -6,7 +6,6 @@ export default function Input({ children, textarea, value, onChange, name, optio
     const [selectedOption, setSelectedOption] = useState(value || '');
     const dropdownRef = useRef(null);
 
-    // Закрываем выпадающий список при клике вне элемента
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
