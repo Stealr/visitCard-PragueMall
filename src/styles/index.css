@@ -28,6 +28,27 @@ main {
     filter: blur(6px);
 }
 
+.blur-wrapper.mobile {
+    display: none;
+}
+
+@media screen and (max-width: 900px) {
+    .blur-wrapper {
+        display: none;
+        height: 110%;
+    }
+
+    .blur-wrapper.mobile {
+        display: block;
+    }
+
+    main {
+        flex-direction: column-reverse;
+        width: auto;
+        height: auto;
+    }
+}
+
 
 
 

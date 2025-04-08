@@ -9,7 +9,7 @@
 }
 
 .left-side h2 {
-    font-size: 2.6rem;
+    font-size: 2.3rem;
     margin-bottom: 55px;
     text-align: center;
 }
@@ -22,7 +22,7 @@
     padding: 0 20px;
 
     position: relative;
-    z-index: 5;    
+    z-index: 5;
 }
 
 .form-container {
@@ -39,9 +39,10 @@
 
 .form-group {
     margin-bottom: 25px;
+    position: relative;
 }
 
-.form-group input {
+.form-group input, textarea {
     width: 100%;
     height: 45px;
     box-sizing: border-box;
@@ -50,18 +51,38 @@
 
     border: 1px solid transparent;
     border-radius: 7px;
-    background-image: linear-gradient(#00123A, #000716), linear-gradient(-80deg,  #FFFFFF, #3A5EFF);
+    background-image: linear-gradient(#00123A, #000716), linear-gradient(-20deg, #FFFFFF, #3A5EFF);
     background-origin: border-box;
     background-clip: padding-box, border-box;
 
     outline: none;
 
-    font-size: 18px;
+    font-size: 0.95rem;
+    padding-left: 20px;
 }
 
-.form-container button{
+.form-group textarea {
+    height: 90px;
+    resize: none;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 12px;
+}
+
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: -6px;
+    font-size: 0.9rem;
+
+    background: #00123A;
+    padding: 0 5px;
+    z-index: 2;
+}
+
+.form-container button {
     width: 145px;
     height: 45px;
+    cursor: pointer;
 
     background-color: white;
     border: none;
@@ -69,11 +90,17 @@
     box-shadow: 0px 0px 10px rgb(255, 255, 255, 0.75);
 
     font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.form-container button:hover {
+    /* background-color: rgb(235, 235, 235); */
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.884);
 }
 
 /* ---------------Decoration----------------- */
 
-.under-section {
+.under-section-light {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -84,6 +111,140 @@
     height: 750px;
     background-color: rgba(155, 155, 155, 0.3);
     border-radius: 50%;
-    
+
     filter: blur(100px);
+}
+
+.on-section-light {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    width: 150px;
+    height: 150px;
+    background-color: hsla(210, 89%, 70%, 0.3);
+    border-radius: 50%;
+
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+@media screen and (max-width: 900px) {
+    .left-side {
+        width: auto;
+        background-color: rgba(0, 0, 0);
+        padding: 50px 0;
+    }
+
+    .left-side h2 {
+        margin-bottom: 30px;
+    }
+}
+
+
+
+
+.custom-select-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 45px;
+    box-sizing: border-box;
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    background-image: linear-gradient(#00123A, #000716), linear-gradient(-20deg, #FFFFFF, #3A5EFF);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.custom-select.open {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.selected-option {
+    flex-grow: 1;
+}
+
+.select-arrow {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.options-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    background-color: #001A44;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border: 1px solid transparent;
+    border-top: none;
+    background-image: linear-gradient(#00123A, #000716), linear-gradient(-20deg, #FFFFFF, #3A5EFF);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    z-index: 10;
+    transition: max-height 0.3s ease, opacity 0.2s ease;
+    opacity: 0;
+}
+
+.options-container.show {
+    max-height: 200px;
+    opacity: 1;
+}
+
+.option {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.option:hover {
+    background-color: #002A6E;
+}
+
+.input-container {
+    position: relative;
+    width: 100%;
+}
+
+@keyframes slideDown {
+    from {
+        max-height: 0;
+        opacity: 0;
+    }
+    to {
+        max-height: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        max-height: 200px;
+        opacity: 1;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+    }
 }
