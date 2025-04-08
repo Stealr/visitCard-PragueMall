@@ -1,11 +1,12 @@
 import "/src/styles/right-side.css"
+// import mallImage from "/assets/Backside.png"
 
 export default function RightSide() {
     return (
         <div className="right-side">
 
             <div className="blur-wrapper mobile">
-                <img src="/src/assets/Backside.png" className="blurred-image" alt="background-img" />
+                <img src="/assets/Backside.png" className="blurred-image" alt="background-img" />
             </div>
 
             <div className="info-section">
