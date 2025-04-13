@@ -10,12 +10,12 @@ function App() {
     <main>
 
       <div className="blur-wrapper">
-        <img src="/assets/Backside.png" className="blurred-image" alt="background-img"/>
+        <img src="/assets/Backside.png" className="blurred-image" alt="background-img" />
       </div>
 
       <LeftSide />
       <RightSide />
-      
+
     </main>
   )
 }
