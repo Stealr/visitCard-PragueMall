@@ -7,6 +7,7 @@ import "/src/styles/left-side.css"
 export default function LeftSide() {
     const dialog = useRef();
 
+    const [title, setTitle] = useState("Сообщение отправлено");
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -28,20 +29,38 @@ export default function LeftSide() {
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleOpenModal()
+    async function submitForm(event) {
+        event.preventDefault();
 
-        console.log(formData);
+        try {
+            const response = await fetch("https://www.form-to-email.com/api/s/85z5EvXkXR0o", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            topic: '',
-            text: ''
-        });
-    };
+            if (response.ok) {
+                handleOpenModal()
+            } else {
+                setTitle("Произошла ошибка");
+                handleOpenModal()
+            }
+
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                topic: '',
+                text: ''
+            });
+        } catch (error) {
+            console.log(error);
+            setTitle("Произошла ошибка");
+            handleOpenModal();
+        }
+    }
 
     function handleOpenModal() {
         dialog.current.showModal();
@@ -58,11 +77,11 @@ export default function LeftSide() {
 
     return (
         <div className="left-side">
-            <Modal ref={dialog} />
+            <Modal ref={dialog} title={title}/>
             <h2>Сайт на реконструкции</h2>
             <div className="form-section">
                 <div className="form-container">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={submitForm}>
                         <h3>Обратная связь</h3>
                         <Input name="name" value={formData.name} onChange={handleChange}>ФИО</Input>
                         <Input name="email" value={formData.email} onChange={handleChange}>Почта</Input>

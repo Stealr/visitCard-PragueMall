@@ -2,19 +2,19 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import "/src/styles/modal.css";
 
-const Modal = function Modal({ref}) {
+const Modal = function Modal({ ref, title }) {
     useEffect(() => {
         const dialogElement = ref.current;
-        
+
         if (dialogElement) {
             const handleClose = () => {
                 dialogElement.addEventListener('animationend', () => {
                     dialogElement.classList.remove('closing');
                 }, { once: true });
-                
+
                 dialogElement.classList.add('closing');
             };
-            
+
             dialogElement.addEventListener('cancel', (e) => {
                 e.preventDefault();
                 handleClose();
@@ -22,7 +22,7 @@ const Modal = function Modal({ref}) {
                     dialogElement.close();
                 }, 300);
             });
-            
+
             dialogElement.addEventListener('click', (e) => {
                 if (e.target === dialogElement) {
                     e.preventDefault();
@@ -37,8 +37,12 @@ const Modal = function Modal({ref}) {
 
     return createPortal(
         <dialog ref={ref} className="modal">
-            <h1>Сообщение отправлено</h1>
-            <p>Спасибо за обратную связь!</p>
+            <h1>{title}</h1>
+            {title === "Сообщение отправлено" ? (
+                <p>Спасибо за обратную связь!</p>
+            ) : (
+                <p>Сообщение не отправилось. Повторите попытку позже</p>
+            )}
         </dialog>,
         document.getElementById('modal-root') || document.body
     );
